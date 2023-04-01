@@ -1,12 +1,22 @@
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import React, { ReactNode } from "react";
+import { Navigation, Setting } from "@/types";
 
-export const Layout = ({
+interface Props {
+  navigation: Navigation;
+  settings: Setting;
+  withHeaderDivider?: boolean;
+  withProfile?: boolean;
+  withSignUpForm?: boolean;
+  children: ReactNode;
+}
+const Layout: React.FC<Props> = ({
   navigation,
   settings,
-  withHeaderDivider,
-  withProfile,
-  withSignUpForm,
+  withHeaderDivider = false,
+  withProfile = false,
+  withSignUpForm = false,
   children,
 }) => {
   return (
@@ -22,3 +32,4 @@ export const Layout = ({
     </div>
   );
 };
+export default Layout;

@@ -1,6 +1,20 @@
 import clsx from "clsx";
-
-export const Bounded = ({
+import React, { ReactNode } from "react";
+type AsProps = {
+  [K in keyof JSX.IntrinsicElements]: { as: K } & JSX.IntrinsicElements[K];
+}[keyof JSX.IntrinsicElements];
+interface Props {
+  as?: AsProps | string;
+  size: string;
+  className?: string;
+  children: ReactNode;
+}
+declare module JSX {
+  interface IntrinsicElements {
+    [Comp: string]: any;
+  }
+}
+const Bounded: React.FC<Props> = ({
   as: Comp = "div",
   size = "base",
   className,
@@ -22,3 +36,4 @@ export const Bounded = ({
     </Comp>
   );
 };
+export default Bounded;

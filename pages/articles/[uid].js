@@ -5,7 +5,7 @@ import * as prismicH from "@prismicio/helpers";
 import { createClient } from "../../prismicio";
 import { components } from "../../slices";
 import { Layout } from "../../components/Layout";
-import { Bounded } from "../../components/Bounded";
+import Bounded from "../../components/Bounded";
 import { Heading } from "../../components/Heading";
 import { HorizontalDivider } from "../../components/HorizontalDivider";
 

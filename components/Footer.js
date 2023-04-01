@@ -1,7 +1,7 @@
 import { PrismicLink, PrismicRichText, PrismicText } from "@prismicio/react";
 import * as prismicH from "@prismicio/helpers";
 
-import { Bounded } from "./Bounded";
+import Bounded from "./Bounded";
 import { Heading } from "./Heading";
 import { HorizontalDivider } from "./HorizontalDivider";
 

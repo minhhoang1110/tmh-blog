@@ -2,11 +2,18 @@ import Head from "next/head";
 import * as prismicH from "@prismicio/helpers";
 
 import { createClient } from "../prismicio";
-import { Layout } from "../components/Layout";
-import { Bounded } from "../components/Bounded";
+import Layout from "../components/Layout";
+import Bounded from "../components/Bounded";
 import { Article } from "../components/Article";
-
-const Index = ({ articles, navigation, settings }) => {
+import React from "react";
+import { Acticle, Navigation, Setting } from "@/types";
+import { GetStaticPropsContext } from "next/types";
+interface Props {
+  articles: Acticle[];
+  navigation: Navigation;
+  settings: Setting;
+}
+const Index: React.FC<Props> = ({ articles, navigation, settings }) => {
   return (
     <Layout
       withHeaderDivider={false}
@@ -29,18 +36,19 @@ const Index = ({ articles, navigation, settings }) => {
 
 export default Index;
 
-export async function getStaticProps({ previewData }) {
+export async function getStaticProps({ previewData }: GetStaticPropsContext) {
   const client = createClient({ previewData });
 
-  const articles = await client.getAllByType("article", {
+  const articles: Acticle[] = (await client.getAllByType("article", {
     orderings: [
       { field: "my.article.publishDate", direction: "desc" },
       { field: "document.first_publication_date", direction: "desc" },
     ],
-  });
-  const navigation = await client.getSingle("navigation");
-  const settings = await client.getSingle("settings");
-
+  })) as Acticle[];
+  const navigation: Navigation = (await client.getSingle(
+    "navigation"
+  )) as Navigation;
+  const settings: Setting = (await client.getSingle("settings")) as Setting;
   return {
     props: {
       articles,
