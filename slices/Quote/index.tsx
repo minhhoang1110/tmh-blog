@@ -1,9 +1,10 @@
+import { SliceProps } from "@/types";
 import * as prismicH from "@prismicio/helpers";
 import { PrismicText } from "@prismicio/react";
 
 import Bounded from "../../components/Bounded";
 
-const Quote = ({ slice }) => {
+const Quote: React.FC<SliceProps> = ({ slice }) => {
   return (
     <Bounded as="section" size="wide">
       {prismicH.isFilled.richText(slice.primary.quote) && (

@@ -1,10 +1,11 @@
 import * as prismicH from "@prismicio/helpers";
-import { PrismicRichText } from "@prismicio/react";
+import { PrismicRichText, SliceLike } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
-
 import Bounded from "../../components/Bounded";
+import React from "react";
+import { SliceProps } from "@/types";
 
-const Image = ({ slice }) => {
+const Image: React.FC<SliceProps> = ({ slice }) => {
   const image = slice.primary.image;
 
   return (

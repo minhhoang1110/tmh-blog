@@ -4,9 +4,17 @@ import * as prismicH from "@prismicio/helpers";
 
 import { createClient } from "../prismicio";
 import { components } from "../slices";
-import { Layout } from "../components/Layout";
+import Layout from "../components/Layout";
+import { GetStaticPropsContext } from "next";
+import { Navigation, Page, Setting } from "@/types";
+import React from "react";
 
-const Page = ({ page, navigation, settings }) => {
+interface Props {
+  page: Page;
+  navigation: Navigation;
+  settings: Setting;
+}
+const Page: React.FC<Props> = ({ page, navigation, settings }) => {
   return (
     <Layout navigation={navigation} settings={settings}>
       <Head>
@@ -22,12 +30,19 @@ const Page = ({ page, navigation, settings }) => {
 
 export default Page;
 
-export async function getStaticProps({ params, previewData }) {
+export async function getStaticProps({
+  params,
+  previewData,
+}: GetStaticPropsContext) {
   const client = createClient({ previewData });
-
-  const page = await client.getByUID("page", params.uid);
-  const navigation = await client.getSingle("navigation");
-  const settings = await client.getSingle("settings");
+  const page: Page = await client.getByUID(
+    "page",
+    (params && (params.uid as string)) || ""
+  );
+  const navigation: Navigation = (await client.getSingle(
+    "navigation"
+  )) as Navigation;
+  const settings: Setting = (await client.getSingle("settings")) as Setting;
 
   return {
     props: {

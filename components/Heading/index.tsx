@@ -1,6 +1,19 @@
+import { AsProps } from "@/types";
 import clsx from "clsx";
+import React, { ReactNode } from "react";
 
-export const Heading = ({
+interface Props {
+  as?: AsProps | string;
+  size?: string;
+  className?: string;
+  children: ReactNode;
+}
+declare module JSX {
+  interface IntrinsicElements {
+    [Comp: string]: any;
+  }
+}
+const Heading: React.FC<Props> = ({
   as: Comp = "h1",
   size = "4xl",
   children,
@@ -21,3 +34,4 @@ export const Heading = ({
     </Comp>
   );
 };
+export default Heading;

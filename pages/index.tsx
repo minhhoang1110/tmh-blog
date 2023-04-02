@@ -4,7 +4,7 @@ import * as prismicH from "@prismicio/helpers";
 import { createClient } from "../prismicio";
 import Layout from "../components/Layout";
 import Bounded from "../components/Bounded";
-import { Article } from "../components/Article";
+import Article from "../components/Article";
 import React from "react";
 import { Acticle, Navigation, Setting } from "@/types";
 import { GetStaticPropsContext } from "next/types";

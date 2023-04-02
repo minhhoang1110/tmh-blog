@@ -1,16 +1,35 @@
 import * as prismicH from "@prismicio/helpers";
 import { PrismicLink, PrismicText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
-
-import Bounded from "./Bounded";
-import { Heading } from "./Heading";
-import { HorizontalDivider } from "./HorizontalDivider";
-
-const Profile = ({ name, description, profilePicture }) => {
+import * as prismicT from "@prismicio/types";
+import Bounded from "../Bounded";
+import Heading from "../Heading";
+import HorizontalDivider from "../HorizontalDivider";
+import { FeatureImage, Navigation, Setting } from "@/types";
+import React, { ReactNode } from "react";
+interface Props {
+  withDivider: boolean;
+  withProfile: boolean;
+  navigation: Navigation;
+  settings: Setting;
+}
+interface ProfileProps {
+  name?: prismicT.RichTextField | null;
+  description?: prismicT.RichTextField | null;
+  profilePicture?: FeatureImage;
+}
+interface NavItemProps {
+  children: ReactNode;
+}
+const Profile: React.FC<ProfileProps> = ({
+  name,
+  description,
+  profilePicture,
+}) => {
   return (
     <div className="px-4">
       <div className="grid max-w-lg grid-cols-1 justify-items-center gap-8">
-        <PrismicLink href="/" tabIndex="-1">
+        <PrismicLink href="/" tabIndex={-1}>
           <div className="relative h-40 w-40 overflow-hidden rounded-full bg-slate-300">
             {prismicH.isFilled.image(profilePicture) && (
               <PrismicNextImage
@@ -43,13 +62,13 @@ const Profile = ({ name, description, profilePicture }) => {
   );
 };
 
-const NavItem = ({ children }) => {
+const NavItem: React.FC<NavItemProps> = ({ children }) => {
   return (
     <li className="font-semibold tracking-tight text-slate-800">{children}</li>
   );
 };
 
-export const Header = ({
+const Header: React.FC<Props> = ({
   withDivider = true,
   withProfile = true,
   navigation,
@@ -86,3 +105,4 @@ export const Header = ({
     </Bounded>
   );
 };
+export default Header;

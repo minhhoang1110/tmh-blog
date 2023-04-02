@@ -8,14 +8,25 @@ export interface ChildrenNodeData {
 export interface PrismicBaseSection {
   alternate_languages: any[];
   first_publication_date: any;
-  href: string | null;
+  href: string;
   id: string;
-  lang: string | null;
+  lang: string;
   last_publication_date: any;
   linked_documents: any[];
   slugs: string[];
   tags: string[];
-  type: string | null;
-  uid: string | null;
-  url: string | null;
+  type: string;
+  uid: string;
+  url: string;
+}
+export type AsProps = {
+  [K in keyof JSX.IntrinsicElements]: { as: K } & JSX.IntrinsicElements[K];
+}[keyof JSX.IntrinsicElements];
+declare module JSX {
+  interface IntrinsicElements {
+    [Comp: string]: any;
+  }
+}
+interface SliceProps {
+  slice: any;
 }

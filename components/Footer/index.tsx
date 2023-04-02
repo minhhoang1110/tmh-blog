@@ -1,11 +1,20 @@
 import { PrismicLink, PrismicRichText, PrismicText } from "@prismicio/react";
 import * as prismicH from "@prismicio/helpers";
 
-import Bounded from "./Bounded";
-import { Heading } from "./Heading";
-import { HorizontalDivider } from "./HorizontalDivider";
+import Bounded from "../Bounded";
+import Heading from "../Heading";
+import HorizontalDivider from "../HorizontalDivider";
+import { Setting } from "@/types";
+import React from "react";
 
-const SignUpForm = ({ settings }) => {
+interface Props {
+  withSignUpForm: boolean;
+  settings: Setting;
+}
+interface SignUpFormProps {
+  settings: Setting;
+}
+const SignUpForm: React.FC<SignUpFormProps> = ({ settings }) => {
   return (
     <div className="px-4">
       <form
@@ -61,7 +70,7 @@ const SignUpForm = ({ settings }) => {
   );
 };
 
-export const Footer = ({ withSignUpForm = true, settings }) => {
+const Footer: React.FC<Props> = ({ withSignUpForm = true, settings }) => {
   return (
     <Bounded as="footer">
       <div className="grid grid-cols-1 justify-items-center gap-24">
@@ -77,3 +86,4 @@ export const Footer = ({ withSignUpForm = true, settings }) => {
     </Bounded>
   );
 };
+export default Footer;

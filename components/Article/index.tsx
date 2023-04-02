@@ -2,13 +2,18 @@ import { PrismicLink, PrismicText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import * as prismicH from "@prismicio/helpers";
 
-import { getExcerpt } from "../lib/getExcerpt";
-import { findFirstImage } from "../lib/findFirstImage";
-import { dateFormatter } from "../lib/dateFormatter";
-import { Heading } from "../components/Heading";
-
-export const Article = ({ article }) => {
-  const featuredImage =
+import { getExcerpt } from "../../lib/getExcerpt";
+import { findFirstImage } from "../../lib/findFirstImage";
+import { dateFormatter } from "../../lib/dateFormatter";
+import Heading from "../Heading";
+import React from "react";
+import { Acticle } from "@/types";
+import { EmptyImageFieldImage, FilledImageFieldImage } from "@prismicio/types";
+interface Props {
+  article: Acticle;
+}
+const Article: React.FC<Props> = ({ article }) => {
+  const featuredImage: EmptyImageFieldImage | FilledImageFieldImage | null =
     (prismicH.isFilled.image(article.data.featuredImage) &&
       article.data.featuredImage) ||
     findFirstImage(article.data.slices);
@@ -19,7 +24,7 @@ export const Article = ({ article }) => {
 
   return (
     <li className="grid grid-cols-1 items-start gap-6 md:grid-cols-3 md:gap-8">
-      <PrismicLink document={article} tabIndex="-1">
+      <PrismicLink document={article} tabIndex={-1}>
         <div className="aspect-w-4 aspect-h-3 relative bg-gray-100">
           {prismicH.isFilled.image(featuredImage) && (
             <PrismicNextImage
@@ -37,7 +42,7 @@ export const Article = ({ article }) => {
           </PrismicLink>
         </Heading>
         <p className="font-serif italic tracking-tighter text-slate-500">
-          {dateFormatter.format(date)}
+          {dateFormatter.format(date || new Date())}
         </p>
         {excerpt && (
           <p className="font-serif leading-relaxed md:text-lg md:leading-relaxed">
@@ -48,3 +53,4 @@ export const Article = ({ article }) => {
     </li>
   );
 };
+export default Article;

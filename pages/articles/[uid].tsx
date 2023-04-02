@@ -4,18 +4,30 @@ import * as prismicH from "@prismicio/helpers";
 
 import { createClient } from "../../prismicio";
 import { components } from "../../slices";
-import { Layout } from "../../components/Layout";
+import Layout from "../../components/Layout";
 import Bounded from "../../components/Bounded";
-import { Heading } from "../../components/Heading";
-import { HorizontalDivider } from "../../components/HorizontalDivider";
+import Heading from "../../components/Heading";
+import HorizontalDivider from "../../components/HorizontalDivider";
+import { GetStaticPropsContext } from "next";
+import { Acticle, Navigation, Setting } from "@/types";
+import React from "react";
 
+interface LatestArticleProps {
+  article: Acticle;
+}
+interface ActicleProps {
+  article: Acticle;
+  latestArticles: Acticle[];
+  navigation: Navigation;
+  settings: Setting;
+}
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
   month: "short",
   day: "numeric",
   year: "numeric",
 });
 
-const LatestArticle = ({ article }) => {
+const LatestArticle: React.FC<LatestArticleProps> = ({ article }) => {
   const date = prismicH.asDate(
     article.data.publishDate || article.first_publication_date
   );
@@ -28,13 +40,18 @@ const LatestArticle = ({ article }) => {
         </PrismicLink>
       </h1>
       <p className="font-serif italic tracking-tighter text-slate-500">
-        {dateFormatter.format(date)}
+        {dateFormatter.format(date || new Date())}
       </p>
     </li>
   );
 };
 
-const Article = ({ article, latestArticles, navigation, settings }) => {
+const Article: React.FC<ActicleProps> = ({
+  article,
+  latestArticles,
+  navigation,
+  settings,
+}) => {
   const date = prismicH.asDate(
     article.data.publishDate || article.first_publication_date
   );
@@ -66,7 +83,7 @@ const Article = ({ article, latestArticles, navigation, settings }) => {
             <PrismicText field={article.data.title} />
           </h1>
           <p className="font-serif italic tracking-tighter text-slate-500">
-            {dateFormatter.format(date)}
+            {dateFormatter.format(date || new Date())}
           </p>
         </Bounded>
         <SliceZone slices={article.data.slices} components={components} />
@@ -94,19 +111,27 @@ const Article = ({ article, latestArticles, navigation, settings }) => {
 
 export default Article;
 
-export async function getStaticProps({ params, previewData }) {
+export async function getStaticProps({
+  params,
+  previewData,
+}: GetStaticPropsContext) {
   const client = createClient({ previewData });
 
-  const article = await client.getByUID("article", params.uid);
-  const latestArticles = await client.getAllByType("article", {
+  const article: Acticle = (await client.getByUID(
+    "article",
+    (params && (params.uid as string)) || ""
+  )) as Acticle;
+  const latestArticles: Acticle[] = (await client.getAllByType("article", {
     limit: 3,
     orderings: [
       { field: "my.article.publishDate", direction: "desc" },
       { field: "document.first_publication_date", direction: "desc" },
     ],
-  });
-  const navigation = await client.getSingle("navigation");
-  const settings = await client.getSingle("settings");
+  })) as Acticle[];
+  const navigation: Navigation = (await client.getSingle(
+    "navigation"
+  )) as Navigation;
+  const settings: Setting = (await client.getSingle("settings")) as Setting;
 
   return {
     props: {

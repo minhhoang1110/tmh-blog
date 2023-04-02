@@ -5,7 +5,7 @@ interface Dimension {
   width: number;
   height: number;
 }
-interface FeatureImage {
+export interface FeatureImage {
   alt: string;
   copyright: string;
   dimensions: Dimension;
@@ -41,4 +41,11 @@ interface SettingData {
 }
 export interface Setting extends PrismicBaseSection {
   data: SettingData;
+}
+interface PageData {
+  slices?: SliceZoneLike;
+  title?: prismicT.RichTextField | null;
+}
+export interface Page extends PrismicBaseSection {
+  data: PageData;
 }

@@ -18,6 +18,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "prismicio.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "prismicio.ts", "slices/index.ts"],
   "exclude": ["node_modules"]
 }

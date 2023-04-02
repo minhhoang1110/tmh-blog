@@ -4,7 +4,7 @@ import { PrismicLink, PrismicProvider } from "@prismicio/react";
 import { PrismicPreview } from "@prismicio/next";
 
 import { repositoryName } from "../prismicio";
-import { Heading } from "../components/Heading";
+import Heading from "../components/Heading";
 
 import "../styles/globals.css";
 import type { ChildrenNode, ChildrenNodeData } from "@/types";

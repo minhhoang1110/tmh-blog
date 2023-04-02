@@ -1,6 +1,18 @@
+import React, { ReactNode } from "react";
 import Bounded from "../../components/Bounded";
 
-const Field = ({ label, children }) => {
+interface FieldProps {
+  label: string;
+  children: ReactNode;
+}
+interface InputFieldProps {
+  label: string;
+  name: string;
+  type?: string;
+  placeholder: string;
+  required?: boolean;
+}
+const Field: React.FC<FieldProps> = ({ label, children }) => {
   return (
     <label>
       <span className="text-sm text-slate-500">{label}</span>
@@ -9,7 +21,7 @@ const Field = ({ label, children }) => {
   );
 };
 
-const InputField = ({
+const InputField: React.FC<InputFieldProps> = ({
   label,
   name,
   type = "text",
@@ -29,7 +41,12 @@ const InputField = ({
   );
 };
 
-const TextareaField = ({ label, name, placeholder, required = true }) => {
+const TextareaField: React.FC<InputFieldProps> = ({
+  label,
+  name,
+  placeholder,
+  required = true,
+}) => {
   return (
     <Field label={label}>
       <textarea
@@ -42,7 +59,7 @@ const TextareaField = ({ label, name, placeholder, required = true }) => {
   );
 };
 
-const ContactForm = () => {
+const ContactForm: React.FC = () => {
   return (
     <Bounded as="section" size="small">
       <form
