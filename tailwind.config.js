@@ -12,7 +12,17 @@ module.exports = {
       sans: "Roboto",
       roboto: ["Roboto", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      zIndex: {
+        1000: "1000",
+      },
+      borderWidth: {
+        1: "1px",
+      },
+      borderRadius: {
+        "50%": "50%",
+      },
+    },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],
 };

@@ -23,7 +23,7 @@ const Article: React.FC<Props> = ({ article }) => {
   const excerpt = getExcerpt(article.data.slices);
 
   return (
-    <li className="grid grid-cols-1 items-start gap-6 md:grid-cols-3 md:gap-8">
+    <li className="grid grid-cols-1 items-start gap-6 border-b-1 border-solid border-gray-200 md:grid-cols-3 md:gap-8">
       <PrismicLink document={article} tabIndex={-1}>
         <div className="aspect-w-4 aspect-h-3 relative bg-gray-100">
           {prismicH.isFilled.image(featuredImage) && (
@@ -47,6 +47,9 @@ const Article: React.FC<Props> = ({ article }) => {
         {excerpt && (
           <p className="font-serif leading-relaxed md:text-lg md:leading-relaxed">
             {excerpt}
+            <PrismicLink document={article} className="ml-1.5 italic underline">
+              Đọc tiếp
+            </PrismicLink>
           </p>
         )}
       </div>

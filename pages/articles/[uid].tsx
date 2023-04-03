@@ -74,7 +74,7 @@ const Article: React.FC<ActicleProps> = ({
           href="/"
           className="font-semibold tracking-tight text-slate-400"
         >
-          &larr; Back to articles
+          &larr; Về trang chủ
         </PrismicLink>
       </Bounded>
       <article>
@@ -93,8 +93,8 @@ const Article: React.FC<ActicleProps> = ({
           <div className="grid grid-cols-1 justify-items-center gap-16 md:gap-24">
             <HorizontalDivider />
             <div className="w-full">
-              <Heading size="2xl" className="mb-10">
-                Latest articles
+              <Heading as={"h2"} size="2xl" className="mb-10">
+                Bài viết mới nhất
               </Heading>
               <ul className="grid grid-cols-1 gap-12">
                 {latestArticles.map((article) => (

@@ -75,7 +75,10 @@ const Header: React.FC<Props> = ({
   settings,
 }) => {
   return (
-    <Bounded as="header">
+    <Bounded
+      as="header"
+      className="fixed top-0 left-0 z-1000 w-full border-b-1 border-solid border-gray-200 bg-white py-3 shadow-sm md:py-4 lg:py-5"
+    >
       <div className="grid grid-cols-1 justify-items-center gap-20">
         <nav>
           <ul className="flex flex-wrap justify-center gap-10">

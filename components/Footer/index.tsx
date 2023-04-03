@@ -23,7 +23,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ settings }) => {
         className="grid w-full max-w-xl grid-cols-1 gap-6"
       >
         {prismicH.isFilled.richText(settings.data.newsletterDisclaimer) && (
-          <div className="text-center font-serif tracking-tight text-slate-500">
+          <div className="font-serif text-center tracking-tight text-slate-500">
             <PrismicRichText
               field={settings.data.newsletterDescription}
               components={{
@@ -77,9 +77,13 @@ const Footer: React.FC<Props> = ({ withSignUpForm = true, settings }) => {
         <HorizontalDivider />
         {withSignUpForm && <SignUpForm settings={settings} />}
         <div className="mx-auto w-full max-w-3xl text-center text-xs font-semibold tracking-tight text-slate-500">
-          Proudly published using{" "}
-          <PrismicLink href="https://prismic.io" className="text-slate-700">
-            Prismic
+          Copyright © 2023{" "}
+          <PrismicLink
+            href="https://my-resume-minhhoang1110.vercel.app/"
+            target={"_blank"}
+            className="text-slate-700"
+          >
+            TMH
           </PrismicLink>
         </div>
       </div>

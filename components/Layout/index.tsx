@@ -2,6 +2,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import React, { ReactNode } from "react";
 import { Navigation, Setting } from "@/types";
+import ScrollToTop from "../ScrollToTop";
 
 interface Props {
   navigation: Navigation;
@@ -27,8 +28,9 @@ const Layout: React.FC<Props> = ({
         navigation={navigation}
         settings={settings}
       />
-      <main>{children}</main>
+      <main className="mt-8 md:mt-10 lg:mt-12">{children}</main>
       <Footer withSignUpForm={withSignUpForm} settings={settings} />
+      <ScrollToTop />
     </div>
   );
 };
