@@ -8,7 +8,6 @@ import Heading from "../components/Heading";
 
 import "../styles/globals.css";
 import type { ChildrenNode, ChildrenNodeData } from "@/types";
-
 const richTextComponents = {
   heading1: ({ children }: ChildrenNode) => (
     <Heading as="h2" size="3xl" className="mb-7 mt-12 first:mt-0 last:mb-0">
