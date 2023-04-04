@@ -29,13 +29,21 @@ const Profile: React.FC<ProfileProps> = ({
   return (
     <div className="px-4">
       <div className="grid max-w-lg grid-cols-1 justify-items-center gap-8">
-        <PrismicLink href="/" tabIndex={-1}>
+        <PrismicLink
+          href="/"
+          tabIndex={-1}
+          aria-label={prismicH.asText(name) || ""}
+        >
           <div className="relative h-40 w-40 overflow-hidden rounded-full bg-slate-300">
             {prismicH.isFilled.image(profilePicture) && (
               <PrismicNextImage
                 field={profilePicture}
                 fill={true}
                 className="object-cover"
+                priority={true}
+                width={150}
+                height={150}
+                alt=""
               />
             )}
           </div>
@@ -45,7 +53,7 @@ const Profile: React.FC<ProfileProps> = ({
           <div className="grid grid-cols-1 gap-2 text-center">
             {prismicH.isFilled.richText(name) && (
               <Heading>
-                <PrismicLink href="/">
+                <PrismicLink href="/" aria-label={prismicH.asText(name) || ""}>
                   <PrismicText field={name} />
                 </PrismicLink>
               </Heading>
@@ -83,13 +91,19 @@ const Header: React.FC<Props> = ({
         <nav>
           <ul className="flex flex-wrap justify-center gap-10">
             <NavItem>
-              <PrismicLink href="/">
+              <PrismicLink
+                href="/"
+                aria-label={prismicH.asText(settings.data.name) || ""}
+              >
                 <PrismicText field={navigation.data.homepageLabel} />
               </PrismicLink>
             </NavItem>
             {navigation.data?.links.map((item) => (
               <NavItem key={prismicH.asText(item.label)}>
-                <PrismicLink field={item.link}>
+                <PrismicLink
+                  field={item.link}
+                  aria-label={prismicH.asText(item.label) || ""}
+                >
                   <PrismicText field={item.label} />
                 </PrismicLink>
               </NavItem>

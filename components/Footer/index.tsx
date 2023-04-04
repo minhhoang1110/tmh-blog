@@ -82,6 +82,7 @@ const Footer: React.FC<Props> = ({ withSignUpForm = true, settings }) => {
             href="https://my-resume-minhhoang1110.vercel.app/"
             target={"_blank"}
             className="text-slate-700"
+            aria-label={"TMH"}
           >
             TMH
           </PrismicLink>

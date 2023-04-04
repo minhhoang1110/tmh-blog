@@ -51,6 +51,7 @@ const richTextComponents = {
     <PrismicLink
       field={node.data}
       className="underline decoration-1 underline-offset-2"
+      aria-label=""
     >
       {children}
     </PrismicLink>

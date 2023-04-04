@@ -13,11 +13,19 @@ const Image: React.FC<SliceProps> = ({ slice }) => {
       <figure className="grid grid-cols-1 gap-4">
         {prismicH.isFilled.image(image) && (
           <div className="bg-gray-100">
-            <PrismicNextImage field={image} sizes="100vw" className="w-full" />
+            <PrismicNextImage
+              field={image}
+              sizes="100vw"
+              className="w-full"
+              priority={true}
+              width={300}
+              height={300}
+              alt=""
+            />
           </div>
         )}
         {prismicH.isFilled.richText(slice.primary.caption) && (
-          <figcaption className="text-center font-serif italic tracking-tight text-slate-500">
+          <figcaption className="font-serif text-center italic tracking-tight text-slate-500">
             <PrismicRichText field={slice.primary.caption} />
           </figcaption>
         )}

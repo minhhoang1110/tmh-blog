@@ -35,7 +35,10 @@ const LatestArticle: React.FC<LatestArticleProps> = ({ article }) => {
   return (
     <li>
       <h1 className="mb-3 text-3xl font-semibold tracking-tighter text-slate-800 md:text-4xl">
-        <PrismicLink document={article}>
+        <PrismicLink
+          document={article}
+          aria-label={prismicH.asText(article.data.title) || ""}
+        >
           <PrismicText field={article.data.title} />
         </PrismicLink>
       </h1>
@@ -68,11 +71,17 @@ const Article: React.FC<ActicleProps> = ({
           {prismicH.asText(article.data.title)} |{" "}
           {prismicH.asText(settings.data.name)}
         </title>
+        <meta
+          name="description"
+          content={prismicH.asText(settings.data.description) || ""}
+        />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Bounded>
         <PrismicLink
           href="/"
           className="font-semibold tracking-tight text-slate-400"
+          aria-label={"Home Page"}
         >
           &larr; Về trang chủ
         </PrismicLink>

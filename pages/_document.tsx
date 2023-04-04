@@ -3,7 +3,7 @@ import React from "react";
 
 const Document: React.FC = () => {
   return (
-    <Html>
+    <Html lang="en">
       <Head>
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
@@ -17,11 +17,6 @@ const Document: React.FC = () => {
       <body className="overflow-x-hidden antialiased">
         <Main />
         <NextScript />
-        <script
-          async
-          defer
-          src="https://static.cdn.prismic.io/prismic.js?new=true&repo=tmh-blog"
-        ></script>
       </body>
     </Html>
   );

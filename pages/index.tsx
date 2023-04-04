@@ -22,6 +22,11 @@ const Index: React.FC<Props> = ({ articles, navigation, settings }) => {
     >
       <Head>
         <title>{prismicH.asText(settings.data.name)}</title>
+        <meta
+          name="description"
+          content={prismicH.asText(settings.data.description) || ""}
+        />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Bounded size="widest">
         <ul className="grid grid-cols-1 gap-16">

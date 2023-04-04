@@ -26,6 +26,11 @@ const Page: React.FC<Props> = ({ page, navigation, settings }) => {
           {prismicH.asText(page.data.title)} |{" "}
           {prismicH.asText(settings.data.name)}
         </title>
+        <meta
+          name="description"
+          content={prismicH.asText(settings.data.description) || ""}
+        />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <SliceZone slices={page.data.slices} components={components} />
     </Layout>
