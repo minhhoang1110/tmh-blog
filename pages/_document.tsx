@@ -17,6 +17,11 @@ const Document: React.FC = () => {
       <body className="overflow-x-hidden antialiased">
         <Main />
         <NextScript />
+        <script
+          async
+          defer
+          src="https://static.cdn.prismic.io/prismic.js?new=true&repo=tmh-blog"
+        ></script>
       </body>
     </Html>
   );
