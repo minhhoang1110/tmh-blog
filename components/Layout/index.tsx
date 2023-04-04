@@ -28,7 +28,13 @@ const Layout: React.FC<Props> = ({
         navigation={navigation}
         settings={settings}
       />
-      <main className="mt-8 md:mt-10 lg:mt-12">{children}</main>
+      <main
+        className={
+          withProfile ? "mt-88 md:mt-80 lg:mt-96" : "mt-8 md:mt-10 lg:mt-12"
+        }
+      >
+        {children}
+      </main>
       <Footer withSignUpForm={withSignUpForm} settings={settings} />
       <ScrollToTop />
     </div>

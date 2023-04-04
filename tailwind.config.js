@@ -22,6 +22,9 @@ module.exports = {
       borderRadius: {
         "50%": "50%",
       },
+      spacing: {
+        88: "22rem",
+      },
     },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],

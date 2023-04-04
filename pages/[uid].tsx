@@ -16,7 +16,11 @@ interface Props {
 }
 const Page: React.FC<Props> = ({ page, navigation, settings }) => {
   return (
-    <Layout navigation={navigation} settings={settings}>
+    <Layout
+      navigation={navigation}
+      settings={settings}
+      withProfile={prismicH.asText(page.data.title) === "Thông tin liên hệ"}
+    >
       <Head>
         <title>
           {prismicH.asText(page.data.title)} |{" "}
